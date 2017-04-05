@@ -13,13 +13,17 @@ import org.eclipse.jetty.webapp.MetaInfConfiguration;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JettyRunner {
+	private static final Logger logger = LoggerFactory.getLogger(JettyRunner.class);
+
 	private static Server server;
 
 	public static void main(String... args) throws Exception {
-		System.out.println("Using properties " + args);
-		Arrays.asList(args).stream().forEach(param -> System.out.println(param));
+		logger.info("Using properties");
+		Arrays.asList(args).stream().forEach(param -> logger.info("Property: {}", param));
 
 		String webappDirLocation = args[0];
 		server = new Server(Integer.parseInt(args[1]));
@@ -34,7 +38,6 @@ public class JettyRunner {
 		context.setParentLoaderPriority(true);
 		server.setHandler(context);
 		server.start();
-		server.dump(System.out);
 		server.join();
 	}
 }
