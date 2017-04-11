@@ -1,0 +1,7 @@
+FROM jboss/wildfly:latest
+
+USER jboss
+RUN /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+
+RUN run -it -p 8080:8080 -p 9990:9990 -v /c/Users/Public/docker/deployments:/opt/jboss/wildfly/standalone/deployments/:rw jboss/wildfly

@@ -1,10 +1,11 @@
-package org.bmsource.servlet.async;
+package org.bmsource.servlet;
 
 import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +15,11 @@ import org.bmsource.ejb.BeanProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet(urlPatterns = "/asyncservlet", asyncSupported = true, loadOnStartup = 1)
-public class AsyncServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/asyncservlet", asyncSupported = true, loadOnStartup = 1, initParams = {
+		@WebInitParam(name = "servletParam", value = "servletParamValue") })
+public class AsyncServletExample extends HttpServlet {
 
-	private static final Logger logger = LoggerFactory.getLogger(AsyncServlet.class);
+	private static final Logger logger = LoggerFactory.getLogger(AsyncServletExample.class);
 
 	private static final long serialVersionUID = 3572170589473494863L;
 
@@ -28,11 +30,8 @@ public class AsyncServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.info("{} started", this.getClass().getName());
 
-		beanProvider.getBeans();
-
 		AsyncContext acontext = req.startAsync();
 		acontext.start(new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -41,11 +40,11 @@ public class AsyncServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 
-				String param = acontext.getRequest().getParameter("param");
-				// String result = resource.process(param);
 				HttpServletResponse response = (HttpServletResponse) acontext.getResponse();
 				try {
-					response.getOutputStream().print("ok" + param);
+					response.getOutputStream().println("response handled asynchronously");
+					response.getOutputStream()
+							.println("servletParam: " + getServletConfig().getInitParameter("servletParam"));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
