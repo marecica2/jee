@@ -13,9 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @WebServlet(urlPatterns = "/servlet", loadOnStartup = 1)
-public class ServletPhasesExample extends HttpServlet {
+public class ServletPhases extends HttpServlet {
 
-	private static final Logger logger = LoggerFactory.getLogger(ServletPhasesExample.class);
+	private static final Logger logger = LoggerFactory.getLogger(ServletPhases.class);
 
 	private static final long serialVersionUID = -473835777237474478L;
 

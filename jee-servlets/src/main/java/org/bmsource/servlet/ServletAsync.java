@@ -17,9 +17,9 @@ import org.slf4j.LoggerFactory;
 
 @WebServlet(urlPatterns = "/asyncservlet", asyncSupported = true, loadOnStartup = 1, initParams = {
 		@WebInitParam(name = "servletParam", value = "servletParamValue") })
-public class AsyncServletExample extends HttpServlet {
+public class ServletAsync extends HttpServlet {
 
-	private static final Logger logger = LoggerFactory.getLogger(AsyncServletExample.class);
+	private static final Logger logger = LoggerFactory.getLogger(ServletAsync.class);
 
 	private static final long serialVersionUID = 3572170589473494863L;
 

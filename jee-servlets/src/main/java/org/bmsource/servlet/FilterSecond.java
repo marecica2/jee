@@ -13,10 +13,10 @@ import javax.servlet.annotation.WebFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebFilter("/*")
-public class SimpleFilter implements Filter {
+@WebFilter(value = "/asyncservlet", asyncSupported = true)
+public class FilterSecond implements Filter {
 
-	private static final Logger logger = LoggerFactory.getLogger(SimpleFilter.class);
+	private static final Logger logger = LoggerFactory.getLogger(FilterSecond.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -26,14 +26,13 @@ public class SimpleFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		logger.info("dofilter");
+		logger.info("dofilter 2");
 		chain.doFilter(request, response);
 	}
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-
 	}
 
 }

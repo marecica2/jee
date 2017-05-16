@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 @WebListener
 public class ListenerForServletContext implements ServletContextListener {
 
-	private static final Logger logger = LoggerFactory.getLogger(AsyncServletExample.class);
+	private static final Logger logger = LoggerFactory.getLogger(ServletAsync.class);
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {

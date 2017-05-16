@@ -10,6 +10,7 @@
 	<modules>
 		<module>jee-servlets</module>
 		<module>jee-ejb</module>
+		<module>jee-jms</module>
 	</modules>
 
 	<dependencies>
@@ -40,6 +41,11 @@
 			<dependency>
 				<groupId>org.bmsource</groupId>
 				<artifactId>jee-ejb</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bmsource</groupId>
+				<artifactId>jee-jms</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

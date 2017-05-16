@@ -14,11 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @WebServlet("session")
-public class SessionServlet extends HttpServlet {
+public class ServletSession extends HttpServlet {
 
 	private static final long serialVersionUID = -910661220169235282L;
 
-	private static final Logger logger = LoggerFactory.getLogger(SessionServlet.class);
+	private static final Logger logger = LoggerFactory.getLogger(ServletSession.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
