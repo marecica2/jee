@@ -11,6 +11,7 @@
 		<module>jee-servlets</module>
 		<module>jee-ejb</module>
 		<module>jee-jms</module>
+		<module>jee-jms-consumer</module>
 	</modules>
 
 	<dependencies>
@@ -33,6 +34,7 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

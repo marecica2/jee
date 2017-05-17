@@ -11,8 +11,13 @@ import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Stateless
 public class MessageProducerBean {
+
+	private static final Logger logger = LoggerFactory.getLogger(MessageProducerBean.class);
 
 	@Resource(lookup = "java:/myJmsTest/MyConnectionFactory")
 	ConnectionFactory connectionFactory;
@@ -20,24 +25,17 @@ public class MessageProducerBean {
 	@Resource(lookup = "java:/myJmsTest/MyQueue")
 	Destination destination;
 
-	public void produceMessage(String msg) throws JMSException {
-		QueueConnection connection = (QueueConnection) connectionFactory.createConnection();
-		MessageProducer producer = null;
-		QueueSession session = null;
+	public void produceMessage(String msg) {
 
-		try {
-			session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-			producer = session.createProducer(destination);
+		try (QueueConnection connection = (QueueConnection) connectionFactory.createConnection();
+				QueueSession session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+				MessageProducer producer = session.createProducer(destination);) {
+
 			TextMessage message = session.createTextMessage(msg);
 			producer.send(message);
-
-		} finally {
-			if (producer != null)
-				producer.close();
-			if (session != null)
-				session.close();
-			if (connection != null)
-				connection.close();
+		} catch (JMSException e) {
+			e.printStackTrace();
+			logger.error(e.getMessage(), e);
 		}
 	}
 }

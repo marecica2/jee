@@ -8,22 +8,5 @@
 	<artifactId>jee-jms</artifactId>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.rabbitmq</groupId>
-			<artifactId>amqp-client</artifactId>
-			<version>4.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.rabbitmq.jms</groupId>
-			<artifactId>rabbitmq-jms</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-		<dependency>
-		  <groupId>org.jboss.ejb3</groupId>
-		  <artifactId>jboss-ejb3-ext-api</artifactId>
-		  <version>2.2.0.Final</version>
-		  <scope>provided</scope>
-		</dependency>		
 	</dependencies>
 </project>
